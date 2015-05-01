@@ -1,12 +1,19 @@
-<!doctype html>
-<html>
+<html lang="en" id="ng-app" ng-app="appRouter">
 <head>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
-    <!-- Load jQuery from Google's CDN -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="/javascripts/vendor/jquery-1.11.2.js"></script>
+
     <script src="/javascripts/angular/source/angular.js"></script>
     <script src="/javascripts/angular/source/angular-route.js"></script>
     <script src="/javascripts/angular/source/angular-animate.js"></script>
+
+    <script src="/javascripts/angular/appRouter.js"></script>
+
+    <script src="/javascripts/angular/controllers/TableController.js"></script>
+    <script src="/javascripts/angular/controllers/TableOneController.js"></script>
+    <script src="/javascripts/angular/controllers/TableTwoController.js"></script>
+    <script src="/javascripts/angular/controllers/TableThreeController.js"></script>
     <!-- Source our javascript file with the jQUERY code -->
 </head>
 <body>
@@ -14,19 +21,19 @@
 <div class="navigation" style="border-radius:4px;">
     <ul class="nav">
         <li>
-            <a href="#" class="first">Table 1</a>
+            <a href="#/tableone" class="first">Table 1</a>
         </li>
         <li>
-            <a href="#">Table 2</a>
+            <a href="#/tabletwo">Table 2</a>
         </li>
         <li>
-            <a href="#" class="last">Table 3</a>
+            <a href="#/tablethree" class="last">Table 3</a>
         </li>
     </ul>
 </div>
 
 
-<div ng-app="appRouter" id="ng-app"></div>
+<div ng-view ng-animate-children class="waveRight"></div>
 
 </body>
 </html>
