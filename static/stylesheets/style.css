@@ -1,3 +1,41 @@
+table.angulartable thead {
+
+    background-color: #56c150;
+    color:white;
+
+}
+
+table.angulartable {
+
+    border-collapse: collapse;
+    border: 1px solid #15541f;
+
+}
+
+table.angulartable th, td, tr {
+
+    border: 1px solid #15541f;
+
+}
+
+table.angulartable th, td {
+
+    padding:10px;
+
+}
+
+table.angulartable tr:nth-child(odd) {
+
+    background-color: rgba(132, 255, 84, 0.1);
+
+}
+
+table.angulartable tr:nth-child(even) {
+
+    background-color: rgba(148, 255, 151, 0.4);
+
+}
+
 h1 {
     font-family: Helvetica;
     font-weight: 100;

@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css"/>
 
     <script src="/javascripts/vendor/jquery-1.11.2.js"></script>
+    <script src="/javascripts/vendor/underscore.js"></script>
 
     <script src="/javascripts/angular/source/angular.js"></script>
     <script src="/javascripts/angular/source/angular-route.js"></script>
@@ -14,10 +15,15 @@
     <script src="/javascripts/angular/controllers/TableOneController.js"></script>
     <script src="/javascripts/angular/controllers/TableTwoController.js"></script>
     <script src="/javascripts/angular/controllers/TableThreeController.js"></script>
+
+    <script src="/javascripts/angular/directives/angularTable.js"></script>
     <!-- Source our javascript file with the jQUERY code -->
 </head>
 <body>
 <!-- Use this navigation div as your menu bar div -->
+<div style="text-align:center;">
+    <h1>Angular Demo</h1>
+</div>
 <div class="navigation" style="border-radius:4px;">
     <ul class="nav">
         <li>
@@ -33,7 +39,7 @@
 </div>
 
 
-<div ng-view ng-animate-children class="waveRight"></div>
+<div ng-view ng-animate-children class="waveRight" style="padding-top:40px;"></div>
 
 </body>
 </html>

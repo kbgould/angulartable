@@ -10,6 +10,14 @@
 
         $scope.testValue = "Magic!";
 
+        $scope.safeDigest = function(scope) {
+            if (!scope.$$phase && !scope.$root.$$phase) {
+                scope.$apply();
+            }
+        };
+
+        window.$scope = $scope;
+
     };
 
     TableController.$inject = ['$scope'];
