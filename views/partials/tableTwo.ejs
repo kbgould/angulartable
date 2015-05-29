@@ -1,28 +1,17 @@
-<div><h1>This is table 2.</h1></div>
+<div><h1>This angular table can be edited.</h1></div>
 
-<table>
-    <thead>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    </thead>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+<div><h3>Inherited: {{testValue}}</h3></div>
+
+<div>
+    <table angular-table="tableTwo"
+           column-data="tableTwoColumns"
+           table-data="tableTwoData"
+           editable-table
+           style="margin:0 auto;">
+
+    </table>
+</div>
+
+<div>
+    <p>{{tableTwoData}}</p>
+</div>

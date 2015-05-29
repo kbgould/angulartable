@@ -1,28 +1,18 @@
-<div><h1>This is table 3.</h1></div>
+<div><h1>This angular table can be edited, and also compiles its cells for two-way data binding.</h1></div>
 
-<table>
-    <thead>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    </thead>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+<div><h3>Inherited: {{testValue}}</h3></div>
+
+<div>
+    <table angular-table="tableThree"
+           column-data="tableThreeColumns"
+           table-data="tableThreeData"
+           editable-table
+           compile-table
+           style="margin:0 auto;">
+
+    </table>
+</div>
+
+<div>
+    <p>{{tableThreeData}}</p>
+</div>

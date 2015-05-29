@@ -8,7 +8,7 @@
 
         'use strict';
 
-        $scope.testValue = "Magic!";
+        $scope.testValue = "Hello Child!";
 
         $scope.safeDigest = function(scope) {
             if (!scope.$$phase && !scope.$root.$$phase) {

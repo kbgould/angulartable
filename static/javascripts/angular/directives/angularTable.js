@@ -46,7 +46,7 @@
 
     }
 
-    function generateTableBody(columnData, tableData, scope, attrs, editable) {
+    function generateTableBody(columnData, tableData, scope, attrs, editable, compileTable) {
 
         var tableBody = "<tbody>";
 
@@ -62,11 +62,27 @@
 
                 if (thisRowEditable) {
 
-                    tableBody += "<input ng-model='" + attrs.tableData + "[" + rowIndex + "]." + col.name + "' type='text'>";
+                    if (compileTable) {
+
+                        tableBody += "<input ng-model='" + attrs.tableData + "[" + rowIndex + "]." + col.name + "' type='text'>";
+
+                    } else {
+
+                        tableBody += "<input value='" + tableData[rowIndex][col.name] + "' type='text'>";
+
+                    }
 
                 } else {
 
-                    tableBody += "{{" + attrs.tableData + "[" + rowIndex + "]." + col.name + "}}";
+                    if (compileTable) {
+
+                        tableBody += "{{" + attrs.tableData + "[" + rowIndex + "]." + col.name + "}}";
+
+                    } else {
+
+                        tableBody += tableData[rowIndex][col.name];
+
+                    }
 
                 }
 
@@ -76,7 +92,15 @@
 
             if (editable) {
 
-                tableBody += "<td><button ng-click='editRow(" + rowIndex + ");'>X</button></td>";
+                if (compileTable) {
+
+                    tableBody += "<td><button style='height:26px; width:26px; border-radius:4px;' ng-click='editRow(" + rowIndex + ");'><span style='left:-3px;' class='glyphicon glyphicon-pencil'></span></button></td>";
+
+                } else {
+
+                    tableBody += "<td><button style='height:26px; width:26px; border-radius:4px;' onclick='editRow(" + rowIndex + ");'><span style='left:-3px;' class='glyphicon glyphicon-pencil'></span></button></td>";
+
+                }
 
             }
 
@@ -90,20 +114,24 @@
 
     }
 
-    function buildTable(elem, scope, attrs, tableData, columnData, editable, compile) {
+    function buildTable(elem, scope, attrs, tableData, columnData, editable, compileTable, compile) {
 
         var tableHtml = "<table>";
 
         tableHtml += generateTableHeader(columnData, editable);
 
-        tableHtml += generateTableBody(columnData, tableData, scope, attrs, editable);
+        tableHtml += generateTableBody(columnData, tableData, scope, attrs, editable, compileTable);
 
         tableHtml += "</table>";
 
         $(elem).html(tableHtml);
 
-        var cellHtml = $(elem).contents();
-        compile(cellHtml)(scope);
+        if (compileTable) {
+
+            var cellHtml = $(elem).contents();
+            compile(cellHtml)(scope);
+
+        }
 
         $(elem).addClass('angulartable');
 
@@ -125,15 +153,16 @@
             ctx.tableData = scope[attrs.tableData];
             ctx.columnData = scope[attrs.columnData];
             ctx.tableEditable = (attrs.editableTable !== undefined ? true : false);
+            ctx.compileTable = (attrs.compileTable !== undefined ? true : false);
 
             // attrs.tableData - table data, array of JSON objects
             // attrs.columnData - column data, array of JSON objects
 
-            buildTable(ctx.element, ctx.scope, ctx.attrs, ctx.tableData, ctx.columnData, ctx.tableEditable, compile);
+            buildTable(ctx.element, ctx.scope, ctx.attrs, ctx.tableData, ctx.columnData, ctx.tableEditable, ctx.compileTable, compile);
 
             ctx.table.rebuildTable = function() {
 
-                buildTable(ctx.element, ctx.scope, ctx.attrs, ctx.tableData, ctx.columnData, ctx.tableEditable, compile);
+                buildTable(ctx.element, ctx.scope, ctx.attrs, ctx.tableData, ctx.columnData, ctx.tableEditable, ctx.compileTable, compile);
 
             };
 
